@@ -1,0 +1,15 @@
+<!-- Sidebar -->
+<div class="sidebar">
+    <h4>ELMS Admin</h4>
+    <a routerLink="dashboard">Dashboard</a>
+    <a routerLink="employee">Employees</a>
+    <a routerLink="leaves">Leave Management</a>
+    <a href="#">Reports</a>
+    <a href="#">Settings</a>
+    <button class="btn btn-danger mx-2" (click)="onLogOut()">LogOut</button>
+</div>
+
+<!--Page Content-->
+<router-outlet></router-outlet>
+
+
