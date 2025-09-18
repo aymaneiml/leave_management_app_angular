@@ -1,1 +1,111 @@
-<p>employee worwwwks!</p>
+<!-- Main Content -->
+<div class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Employee Management</h3>
+        <button class="btn btn-primary" (click)="openModel()">Add Employee</button>
+    </div>
+
+    <div class="card p-4">
+        <h6 class="text-primary">Employee List</h6>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of employeeList; track $index) {
+                        <tr>
+                        <td>{{ $index+1 }}</td>
+                        <td>{{ item.employeeName }}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{ item.contactNo }}</td>
+                        <td>{{ item.deptName}}</td>
+                        <td>
+                            <button class="btn btn-sm me-1 btn-warning">Edit</button>
+                            <button class="btn btn-sm me-1 btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal personnalisé -->
+<div #newModel class="custom-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      
+      <!-- Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Employee</h5>
+        <button type="button" class="btn-close" (click)="closeModel()"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Employee Name</label>
+              <input type="text" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Contact Number</label>
+              <input type="text" class="form-control" placeholder="Enter contact">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email ID</label>
+              <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Department</label>
+              <select class="form-select">
+                <option selected>Select Department</option>
+                <option>HR</option>
+                <option>IT</option>
+                <option>Finance</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="Enter password">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select class="form-select">
+                <option selected>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Role</label>
+              <input type="text" class="form-control" placeholder="Enter role">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModel()">Close</button>
+        <button type="button" class="btn btn-primary">Save Employee</button>
+      </div>
+    </div>
+  </div>
+</div>

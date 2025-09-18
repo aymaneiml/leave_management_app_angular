@@ -1,0 +1,123 @@
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-add {
+        float: right;
+        margin-bottom: 15px;
+    }
+
+    .table th {
+        background: #111827;
+        color: white;
+    }
+
+    .action-btn {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+    .btn-view {
+        background: #0ea5e9;
+    }
+
+    .btn-edit {
+        background: #22c55e;
+    }
+
+    .btn-delete {
+        background: #ef4444;
+    }
+
+
+    /* ---- Conteneur du modal ---- */
+    .custom-modal {
+        display: none;
+        /* caché par défaut */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        /* fond gris transparent */
+        z-index: 1050;
+        /* au-dessus du contenu */
+        overflow-y: auto;
+        /* scroll si contenu trop grand */
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    /* ---- Boîte de dialogue ---- */
+    .custom-modal .modal-dialog {
+        margin: 5% auto;
+        max-width: 800px;
+        transform: translateY(-30px);
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    /* ---- Contenu ---- */
+    .custom-modal .modal-content {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    /* ---- Header ---- */
+    .custom-modal .modal-header {
+        border-bottom: 1px solid #dee2e6;
+        background: #f8f9fa;
+        padding: 15px 20px;
+    }
+
+    /* ---- Body ---- */
+    .custom-modal .modal-body {
+        padding: 20px;
+    }
+
+    /* ---- Footer ---- */
+    .custom-modal .modal-footer {
+        border-top: 1px solid #dee2e6;
+        background: #f8f9fa;
+        padding: 15px 20px;
+    }
+
+    /* ---- Champs ---- */
+    .custom-modal .form-control,
+    .custom-modal .form-select {
+        border-radius: 8px;
+    }
+
+    /* ---- Animations ---- */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }

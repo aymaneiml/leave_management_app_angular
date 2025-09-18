@@ -5,6 +5,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Employee } from './pages/employee/employee';
 import { Leave } from './pages/leave/leave';
 
+
 export const routes: Routes = [
 
     {
