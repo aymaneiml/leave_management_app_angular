@@ -37,4 +37,12 @@ export class EmployeeService {
   onSaveNewEmp(obj:any) {
     return this.http.post("https://freeapi.miniprojectideas.com/api/EmployeeLeave/CreateEmployee", obj)
   }
+
+  onAddLeave(obj: any) {
+    return this.http.post("https://freeapi.miniprojectideas.com/api/EmployeeLeave/AddLeave",obj)
+  }
+
+  getAllLeaveByEmpId(empId:number): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>("https://freeapi.miniprojectideas.com/api/EmployeeLeave/GetAllLeavesByEmployeeId?id=" + empId)
+  }
 }

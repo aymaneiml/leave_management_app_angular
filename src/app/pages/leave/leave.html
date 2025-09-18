@@ -1,1 +1,172 @@
-<p>leave works!</p>
+<!-- Main Content -->
+<div class="main-content">
+    <div class="col-md-10 content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3>Leave Management</h3>
+            <button class="btn btn-primary" (click)="openModel()">Add Leave Request</button>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="currentTabName=='myLeaves' ? 'active':''"  (click)="changeTab('myLeaves')">My Leaves</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="currentTabName=='leavesRequest' ? 'active':''"  (click)="changeTab('leavesRequest')">Leaves Request</a>
+            </li>
+        </ul>
+
+        <!-- Table -->
+        <div class="card shadow-sm">
+            @if(currentTabName == 'myLeaves') {
+            <div class="card-body active">
+                <h6 class="mb-3">My Leave Requests</h6>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Leave ID</th>
+                            <th>Employee</th>
+                            <th>Leave Type</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Days</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(item of leaveList; track $index){
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.employeeName}}</td>
+                            <td>{{item.leaveType}}</td>
+                            <td>{{item.fromDate | date:'dd-MM-yy'}}</td>
+                            <td>{{item.toDate | date:'dd-MMM-yy'}}</td>
+                            <td>{{item.noOfDays}}</td>
+                            <td>
+                                @if (item.isApproved == null ) {
+                                    <span class="status-badge status-pending">Pending</span>
+                                } @else if (item.isApproved == true ) {
+                                    <span class="status-badge status-pending">Approved</span>
+                                } @else if (item.isApproved == false ){
+                                    <span class="status-badge status-pending">Reject</span>
+                                }
+                            </td>
+                            <td class="action-icons">
+                                <span class="icon-view"></span>
+                                <span class="icon-edit"></span>
+                                <span class="icon-delete"></span>
+                            </td>
+                        </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            } @else {
+                <div class="card-body active">
+                <h6 class="mb-3">Pending Approval</h6>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Leave ID</th>
+                            <th>Employee</th>
+                            <th>Leave Type</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Days</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(item of leaveList; track $index){
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.employeeName}}</td>
+                            <td>{{item.leaveType}}</td>
+                            <td>{{item.fromDate | date:'dd-MM-yy'}}</td>
+                            <td>{{item.toDate | date:'dd-MMM-yy'}}</td>
+                            <td>{{item.noOfDays}}</td>
+                            <td class="action-icons text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <button class="btn btn-success btn-sm px-3">Approve</button>
+                                <button class="btn btn-danger btn-sm px-3">Reject</button>
+                            </div>
+                            </td>
+                        </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            }
+ 
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Leave Request Modal -->
+<div #leaveModal class="custom-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Add Leave Request</h5>
+                <button type="button" class="btn-close" (click)="closeModel()"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <form [formGroup]="leaveForm">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Leave Type</label>
+                            <select formControlName="leaveType" name="leaveType" class="form-select">
+                                <option selected>Select Leave Type</option>
+                                <option>Sick Leave</option>
+                                <option>Annual Leave</option>
+                                <option>Personal Leave</option>
+                                <option>Maternity Leave</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">From Date</label>
+                            <input type="date" formControlName="fromDate" name="fromDate" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">To Date</label>
+                            <input type="date" formControlName="toDate" name="toDate" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Number of Days</label>
+                            <input type="number" formControlName="noOfDays" name="noOfDays" class="form-control">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Details</label>
+                            <textarea formControlName="details" name="details" class="form-control"
+                                placeholder="Enter details"></textarea>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" >Reset</button>
+                <button type="button" class="btn btn-primary" (click)="onSaveLeave()">Save Leave</button>
+            </div>
+        </div>
+    </div>
+</div>

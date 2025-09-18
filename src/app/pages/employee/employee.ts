@@ -66,7 +66,8 @@ export class Employee implements OnInit{
         if(res.result){
           alert("Employee Created Success")
           this.getEmployees()
-          this.onResetFields()
+          //this.onResetFields()
+          this.closeModel()
         }else {
           alert(res.message)
         }

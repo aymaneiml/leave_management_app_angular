@@ -1,0 +1,38 @@
+    
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+    .content {
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .status-badge {
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .status-pending {
+      background-color: #ffeeba;
+      color: #856404;
+    }
+    .status-approved {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .status-rejected {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .action-icons span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 3px;
+    }
+    .icon-edit { background: #0d6efd; }
+    .icon-view { background: #ffc107; }
+    .icon-delete { background: #dc3545; }
